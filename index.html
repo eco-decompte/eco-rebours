@@ -28,23 +28,28 @@
     <script>
         function updateCountdown() {
             const now = new Date();
-            const tomorrow = new Date();
+            let tomorrow = new Date();
             tomorrow.setDate(now.getDate() + 1);
             tomorrow.setHours(20, 0, 0, 0);
 
+            // Si l'heure actuelle est déjà passée 20h, ajouter un jour supplémentaire
+            if (now.getHours() >= 20 && now.getMinutes() >= 0) {
+                tomorrow.setDate(tomorrow.getDate() + 1);
+            }
+
             const diff = tomorrow - now;
             if (diff <= 0) {
-                document.getElementById('countdown').innerHTML = "Le temps est écoulé !";
+                document.getElementById('countdown').innerHTML = "Eco time !";
                 return;
             }
-            
+
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / (1000 * 60)) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
-            
+
             document.getElementById('countdown').innerHTML = `${hours}h ${minutes}m ${seconds}s`;
         }
-        
+
         setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
