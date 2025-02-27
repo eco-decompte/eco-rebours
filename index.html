@@ -22,22 +22,15 @@
     </style>
 </head>
 <body>
-    <h1>Compte à Rebours jusqu'à demain 20h</h1>
+    <h1>Compte à Rebours jusqu'au 28 février 2025 à 20h</h1>
     <div id="countdown"></div>
 
     <script>
         function updateCountdown() {
             const now = new Date();
-            let tomorrow = new Date();
-            tomorrow.setDate(now.getDate() + 1);
-            tomorrow.setHours(20, 0, 0, 0);
+            const targetDate = new Date('2025-02-28T20:00:00');
 
-            // Si l'heure actuelle est déjà passée 20h, ajouter un jour supplémentaire
-            if (now.getHours() >= 20 && now.getMinutes() >= 0) {
-                tomorrow.setDate(tomorrow.getDate() + 1);
-            }
-
-            const diff = tomorrow - now;
+            const diff = targetDate - now;
             if (diff <= 0) {
                 document.getElementById('countdown').innerHTML = "Eco time !";
                 return;
